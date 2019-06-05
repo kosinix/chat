@@ -1,0 +1,26 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "A chat program using Socket.io and Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kosinix/chat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kosinix/chat/issues"
+  },
+  "homepage": "https://github.com/kosinix/chat#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.11",
+    "nunjucks": "^3.2.0",
+    "socket.io": "^2.2.0"
+  }
+}

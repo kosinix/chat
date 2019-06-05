@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Realtime Chat</title>
+
+    <link rel="stylesheet" href="/css/style.css" />
+
+</head>
+
+<body>
+    <div v-cloak id="app">
+        <h1>Realtime Chat</h1>
+        <ul class="messages">
+            <li v-for="message in messages">
+                ${message.content}
+            </li>
+        </ul>
+        <form v-on:submit.prevent="send" action="" method="POST">
+            <div class="message-area">
+                <input v-model="message" autocomplete="off" name="message" id="message" type="text" placeholder="Type a message..." />
+            </div>
+        </form>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/vue.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

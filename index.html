@@ -1,1 +1,47 @@
-<html></html>
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Realtime Chat</title>
+
+    <link rel="stylesheet" href="/css/style.css" />
+
+</head>
+
+<body>
+    <div v-cloak id="vJoin">
+        <h1>Realtime Chat</h1>
+        <form v-on:submit.prevent="send" action="" method="POST">
+            <input v-model="room" autocomplete="off" name="room" id="room" type="text" placeholder="Enter Room Name" />
+            <button>Join</button>
+        </form>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/vue.min.js"></script>
+    <script src="/js/main.js">
+    var socket = io();
+    var app = new Vue({
+        el: '#vJoin',
+        delimiters: ["${", "}"],
+        data: {
+            room: ''
+        },
+        methods: {
+            send: function(){
+                var me = this;
+                socket.emit('join', me.room);
+                me.message = '';
+            }
+        }
+    })
+
+    socket.on('chat message', function (msg) {
+        app.messages.push({
+            content: msg
+        })
+    });
+    </script>
+</body>
+
+</html>
