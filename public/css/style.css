@@ -1,18 +1,110 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font: 13px Helvetica, Arial; }
 
-
-
+.btn-full-width {
+    width: 100%;
+}
+.header-1 {
+    font-size: 18px;
+    font-weight: normal;
+}
+[v-cloak] {
+    visibility: hidden;
+}
 .message-area {
     border-top: 1px solid #ccc;
     position: fixed;
     bottom:0;
     left: 0;
     right: 0;
-    padding: 10px;
+    padding: 15px 10px;
+    display: flex;
+    background: rgba(255, 255, 255, 0.9);
 }
 .message-area input {
     width: 100%;
     border: 0;
     outline: none;
+}
+.message-area .btn-send {
+    margin-left: 10px;
+}
+
+.header {
+    text-align: center;
+}
+
+.thread {
+    margin-bottom: 80px;
+}
+.thread .item {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.thread .item .photo {
+    width: 36px;
+    align-self: flex-end;
+}
+.thread .item .photo span {
+    width: 28px;
+    height: 28px;
+    border-radius: 100%;
+    background: #0099ff;
+    text-align: center;
+    font-size: 10px;
+    color: #ffffff;
+    display: inline-block;
+    line-height: 28px;
+}
+
+.thread .item .body {
+    flex-grow: 2;
+}
+.thread .item .body .author {
+    margin: 0 12px 5px 12px;
+    color: #aaa;
+    font-size: 12px;
+}
+.thread .item .body .content {
+    display: flex;
+}
+.thread .item .body .content .message {
+    background: #f1f0f0;
+    border-radius: 20px;
+    color: #000000;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.thread .item.sender .body .content {
+    justify-content: flex-end;
+}
+.thread .item.sender .body .content .message {
+    background: #0099ff;
+    color: #ffffff;
+}
+.thread .item.sender .photo,
+.thread .item.sender .author {
+    display: none;
+}
+
+.thread .item.notif  {
+    display: block;
+}
+.thread .item.notif .photo,
+.thread .item.notif .author {
+    display: none;
+}
+
+.thread .item.notif .body {
+    text-align: center;
+}
+.thread .item.notif .body .content {
+    display: inline-block;
+    font-style: italic;
+}
+.thread .item.notif .body .content .message {
+    background: none;
+    border: 1px solid #f1f0f0
 }

@@ -5,24 +5,44 @@
 
     <title>Realtime Chat</title>
 
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
 
 </head>
 
 <body>
-    <div v-cloak id="app">
-        <h1>Realtime Chat</h1>
-        <ul class="messages">
-            <li v-for="message in messages">
-                ${message.content}
-            </li>
-        </ul>
-        <form v-on:submit.prevent="send" action="" method="POST">
-            <div class="message-area">
-                <input v-model="message" autocomplete="off" name="message" id="message" type="text" placeholder="Type a message..." />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div v-cloak id="app">
+                    <div class="header pt-5">
+                        <h1 class="header-1">Realtime Chat</h1>
+                        <p>Share this link to join: <a href="{{inviteUrl}}">{{inviteUrl}}</a></p>                
+                    </div>
+                    <div id="thread" class="thread">
+                        <div v-for="message in messages" v-bind:class="message.className">
+                            <div class="photo">
+                                <span>P</span>
+                            </div>
+                            <div class="body">
+                                <div class="author">${message.author}</div>
+                                <div class="content">
+                                    <div class="message">${message.content}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form v-on:submit.prevent="send" action="" method="POST">
+                        <div class="message-area">
+                            <input v-model="message" autocomplete="off" name="message" id="message" type="text" placeholder="Type a message..." />
+                            <button class="btn btn-primary btn-send">Send</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
+    
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/vue.min.js"></script>
     <script src="/js/main.js"></script>

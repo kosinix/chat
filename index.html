@@ -5,42 +5,47 @@
 
     <title>Realtime Chat</title>
 
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
 
 </head>
 
 <body>
-    <div v-cloak id="vJoin">
-        <h1>Realtime Chat</h1>
-        <form v-on:submit.prevent="send" action="" method="POST">
-            <input v-model="room" autocomplete="off" name="room" id="room" type="text" placeholder="Enter Room Name" />
-            <button>Join</button>
-        </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 mr-auto ml-auto pt-5">
+                <div v-cloak id="vJoin" class="text-center">
+                    <h1>Realtime Chat</h1>
+                    <form v-on:submit="onSubmit" action="/join" method="POST">
+                        <div class="form-group">
+                            <input class="form-control" v-model="uid" autocomplete="off" name="uid" id="uid" type="text" placeholder="Your Nickname" />
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success btn-full-width">Join</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
     <script src="/js/vue.min.js"></script>
-    <script src="/js/main.js">
-    var socket = io();
+    <script>
     var app = new Vue({
         el: '#vJoin',
         delimiters: ["${", "}"],
         data: {
-            room: ''
+            uid: ''
         },
         methods: {
-            send: function(){
+            onSubmit: function(e){
                 var me = this;
-                socket.emit('join', me.room);
-                me.message = '';
+                if(me.uid===''){
+                    e.preventDefault()
+                    return alert('Please provide nickname')
+                }
             }
         }
     })
-
-    socket.on('chat message', function (msg) {
-        app.messages.push({
-            content: msg
-        })
-    });
     </script>
 </body>
 
